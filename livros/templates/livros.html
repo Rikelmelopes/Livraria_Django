@@ -99,11 +99,15 @@
 <div class="livro-grid">
   {% if livros %} {% for livro in livros %}
   <div class="livro-card">
+    {% if livro.foto %}
     <img
       src="{{ livro.foto.url }}"
       alt="{{ livro.titulo }} - {{ livro.autor }}"
     />
-    <h2>Titulo: {{ livro.titulo }}</h2>
+    {% else %}
+    <p class="no-image">Sem imagem disponível</p>
+    {% endif %}
+    <h2>Título: {{ livro.titulo }}</h2>
     <h3>Autor: {{ livro.autor }}</h3>
     <p>Ano de lançamento: {{ livro.data_lancamento }}</p>
     <p>Valor: R$ {{ livro.valor }}</p>
@@ -112,4 +116,5 @@
   <p class="no-results">Nenhum Livro encontrado.</p>
   {% endif %}
 </div>
+
 {% endblock %}

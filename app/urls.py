@@ -4,9 +4,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from livros.views import livros_view ,novo_livro_view
+from contas.views import registro_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('registro/',registro_view,name='registro'),
     path('livros/',livros_view,name='livro_list'),
     path('novo_livro/',novo_livro_view,name= 'novo_livro')
     
