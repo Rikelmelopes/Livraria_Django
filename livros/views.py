@@ -1,10 +1,7 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render,redirect
+
 from livros.models import Livro
 from livros.forms import LivroModelForm
-from django.views import View
-from django.views.generic import ListView ,CreateView
+from django.views.generic import ListView ,CreateView, DetailView, DeleteView
 # Create your views here.
 
 #Function BasedViews
@@ -71,9 +68,12 @@ class LivroListView(ListView): #Template de uma lista
             #novo_livro_form.save()
             #return redirect('livro_list') 
         #return render(request,'novo_livro.html',{'novo_livro_form': novo_livro_form})
-
+        
 class NewLivroListView(CreateView):
     model = Livro
     form_class = LivroModelForm
     template_name = 'novo_livro.html'
     success_url = '/livros/'
+ 
+ 
+ 
