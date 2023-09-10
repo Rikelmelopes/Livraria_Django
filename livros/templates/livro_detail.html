@@ -78,12 +78,10 @@
   }
 </style>
 <div class="car-card">
-  <img
-    src="{{ object.photo.url }}"
-    alt="{{ object.titulo }} - {{ object.genero }}"
-  />
-  <h2>{{ object.genero }} {{ object.titulo }}</h2>
-  <p><strong>Ano de Lançamento:</strong> {{ object.ano_lancamento }}</p>
+  <img src="{{ object.foto.url }}" />
+  <h2>{{ object.titulo }}</h2>
+  <p><strong>Genero:</strong> {{ object.genero }}</p>
+  <p><strong>Ano de Lançamento:</strong> {{ object.data_lancamento }}</p>
   <p><strong>Autor:</strong> {{ object.autor }}</p>
   <p><strong>Preço:</strong> {{ object.valor }}</p>
 </div>

@@ -1,7 +1,7 @@
 
 from livros.models import Livro
 from livros.forms import LivroModelForm
-from django.views.generic import ListView ,CreateView, DetailView, DeleteView
+from django.views.generic import ListView ,CreateView, DetailView
 # Create your views here.
 
 #Function BasedViews
@@ -75,5 +75,11 @@ class NewLivroListView(CreateView):
     template_name = 'novo_livro.html'
     success_url = '/livros/'
  
+ 
+class LivroDetailView(DetailView):
+    model = Livro
+    template_name = 'livro_detail.html'
+    
+    
  
  
