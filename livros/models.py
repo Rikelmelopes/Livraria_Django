@@ -13,3 +13,15 @@ class Livro(models.Model):
     
     def __str__(self):
         return self.titulo
+    
+    
+class LivroInventory(models.Model):
+    quantidade_livros = models.IntegerField()
+    valor_livros = models.FloatField()
+    registro_criado = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-registro_criado'] #ordenar Query em ordem decrescente
+        
+    def __str__(self):
+        return f'{self.quantidade_livros} - {self.valor_livros}'

@@ -1,7 +1,10 @@
 
 from livros.models import Livro
 from livros.forms import LivroModelForm
-from django.views.generic import ListView ,CreateView, DetailView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView ,CreateView, DetailView , UpdateView , DeleteView
 # Create your views here.
 
 #Function BasedViews
@@ -68,18 +71,29 @@ class LivroListView(ListView): #Template de uma lista
             #novo_livro_form.save()
             #return redirect('livro_list') 
         #return render(request,'novo_livro.html',{'novo_livro_form': novo_livro_form})
-        
+@method_decorator(login_required(login_url='login'), name='dispatch')   
 class NewLivroListView(CreateView):
     model = Livro
     form_class = LivroModelForm
     template_name = 'novo_livro.html'
     success_url = '/livros/'
  
- 
+  
 class LivroDetailView(DetailView):
     model = Livro
     template_name = 'livro_detail.html'
-    
-    
+
+@method_decorator(login_required(login_url='login'), name='dispatch')   
+class LivroUpdateView(UpdateView):
+    model = Livro
+    form_class = LivroModelForm
+    template_name = 'livro_update.html'
  
- 
+    def get_success_url(self):
+        return reverse_lazy('detalhes_livros', kwargs={'pk': self.object.pk})
+    
+@method_decorator(login_required(login_url='login'), name='dispatch')     
+class LivroDeleteView(DeleteView):
+    model = Livro
+    template_name = 'livro_delete.html'
+    success_url = '/livros/'
